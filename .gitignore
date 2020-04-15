@@ -1,0 +1,32 @@
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+*.log*
+.gradle/
+target/
+build/
+out/
+src/main/resources/static/
+package-lock.json
+node_modules/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/

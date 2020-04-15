@@ -1,0 +1,32 @@
+{
+  "name": "js",
+  "version": "1.0.0",
+  "description": "RSocket",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "start": "node main.js",
+    "build": "parcel build main.js --no-cache -d ../resources/static"
+  },
+  "keywords": [
+    "ws",
+    "parcel",
+    "rsocket"
+  ],
+  "author": "daggerok",
+  "license": "ISC",
+  "dependencies": {
+    "fbjs": "1.0.0",
+    "rsocket-core": "0.0.19",
+    "rsocket-flowable": "0.0.14",
+    "rsocket-tcp-server": "0.0.19",
+    "rsocket-types": "0.0.16",
+    "rsocket-websocket-client": "0.0.19",
+    "rsocket-websocket-server": "0.0.19",
+    "ws": "7.2.3"
+  },
+  "devDependencies": {
+    "@types/node": "13.11.1",
+    "parcel-bundler": "1.12.4"
+  }
+}
