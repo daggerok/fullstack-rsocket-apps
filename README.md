@@ -1,4 +1,5 @@
 # fullstack-rsocket-apps [![CI](https://github.com/daggerok/fullstack-rsocket-apps/workflows/CI/badge.svg)](https://github.com/daggerok/fullstack-rsocket-apps/actions?query=workflow%3ACI)
+From end to end full-stack communication by using RSocket protocol example application.
 
 ```bash
 ./gradlew ' java -jar ./build/libs/*jar
