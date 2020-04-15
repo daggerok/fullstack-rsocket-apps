@@ -11,6 +11,7 @@ out/
 src/main/resources/static/
 package-lock.json
 node_modules/
+.cache/
 
 ### STS ###
 .apt_generated

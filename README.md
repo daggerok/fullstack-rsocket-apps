@@ -2,7 +2,7 @@
 From end to end full-stack communication by using RSocket protocol example application.
 
 ```bash
-./gradlew ' java -jar ./build/libs/*jar
+./gradlew ; java -jar ./build/libs/*jar
 ```
 
 open http://127.0.0.1:8080

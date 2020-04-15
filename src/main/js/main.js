@@ -2,31 +2,12 @@ const { RSocketClient, JsonSerializer, IdentitySerializer } = require('rsocket-c
 const RSocketWebSocketClient = require('rsocket-websocket-client').default;
 let client = undefined;
 
-function addErrorMessage(prefix, error) {
-  const ul = document.getElementById('app');
-  const li = document.createElement('li');
-  li.appendChild(document.createTextNode(prefix + error));
-  ul.prepend(li);
-}
-
-function reloadMessages(message) {
-  const ul = document.getElementById('app');
-  const all_li = ul.getElementsByTagName('li');
-
-  for (let i = 0; i < all_li.length; i++) {
-    const li = all_li[i];
-    if (li.innerText.includes(message['id'])) return;
-  }
-
-  const li = document.createElement('li');
-  li.appendChild(document.createTextNode(JSON.stringify(message)));
-  ul.appendChild(li);
-}
+document.addEventListener('DOMContentLoaded', main);
 
 function main() {
   if (client !== undefined) {
     client.close();
-    document.getElementById('app').innerHTML = '';
+    ul().innerHTML = '';
   }
 
   // Create an instance of a client
@@ -64,7 +45,7 @@ function main() {
         onComplete: () => console.log('complete'),
         onError: error => {
           console.log(error);
-          addErrorMessage('Connection has been closed due to ', error);
+          addListItem(ul(), 'Connection has been closed due to ' + error);
         },
         onNext: payload => {
           console.log(payload.data);
@@ -77,7 +58,7 @@ function main() {
     },
     onError: error => {
       console.log(error);
-      addErrorMessage('Connection has been refused due to ', error);
+      addListItem(ul(), 'Connection has been refused due to ', error);
     },
     onSubscribe: cancel => {
       /* call cancel() to abort */
@@ -85,4 +66,22 @@ function main() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', main);
+function ul() {
+  return document.getElementById('app');
+}
+
+function reloadMessages(message) {
+  const listItems = ul().getElementsByTagName('li');
+
+  for (let i = 0; i < listItems.length; i++) {
+    if (listItems[i].innerText.includes(message['id'])) return;
+  }
+
+  addListItem(JSON.stringify(message));
+}
+
+function addListItem(text) {
+  const li = document.createElement('li');
+  li.appendChild(document.createTextNode(text));
+  ul().prepend(li);
+}

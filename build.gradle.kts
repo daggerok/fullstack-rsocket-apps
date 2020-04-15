@@ -71,8 +71,6 @@ tasks {
   }
 }
 
-defaultTasks("clean", "build")
-
 reckon {
   scopeFromProp()
   // stageFromProp()
@@ -102,8 +100,8 @@ node {
   download = true
   version = projectNodeVersion
   npmVersion = projectNpmVersion
-  workDir = file("$buildDir/nodejs")
-  npmWorkDir = file("$buildDir/npm")
+  workDir = file("$buildDir/.gradle/nodejs")
+  npmWorkDir = file("$buildDir/.gradle/npm")
   nodeModulesDir = file("$projectDir/src/main/js")
 }
 
@@ -112,8 +110,10 @@ tasks {
     delete("$projectDir/src/main/js/.cache")
     delete("$projectDir/src/main/resources/static")
   }
-  assemble {
-    shouldRunAfter("clean")
+  processResources {
+    shouldRunAfter("clean", "npm_i", "npm_run_build")
+    dependsOn("npm_i", "npm_run_build")
   }
-  assemble.get().dependsOn("npm_i", "npm_run_build")
 }
+
+defaultTasks("clean", "npm_i", "npm_run_build", "build")
